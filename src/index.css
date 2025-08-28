@@ -1,0 +1,946 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Bank of Ireland Brand Design System - Enhanced Interactive Version */
+:root {
+  /* Bank of Ireland Primary Colors */
+  --boi-blue: #003d82;
+  --boi-blue-light: #0052b3;
+  --boi-blue-dark: #002a5c;
+  --boi-blue-hover: #004494;
+  --boi-blue-glow: rgba(0, 61, 130, 0.3);
+  
+  /* Bank of Ireland Secondary Colors */
+  --boi-teal: #00a3a1;
+  --boi-teal-light: #e6f7f7;
+  --boi-teal-glow: rgba(0, 163, 161, 0.3);
+  --boi-green: #00b050;
+  --boi-green-light: #e6f7ed;
+  --boi-green-glow: rgba(0, 176, 80, 0.3);
+  --boi-orange: #ff6900;
+  --boi-orange-light: #fff2e6;
+  --boi-orange-glow: rgba(255, 105, 0, 0.3);
+  --boi-purple: #8b5a96;
+  --boi-purple-light: #f4f0f5;
+  --boi-purple-glow: rgba(139, 90, 150, 0.3);
+  --boi-pink: #e91e63;
+  --boi-pink-light: #fce4ec;
+  
+  /* Neutral Colors */
+  --background: #ffffff;
+  --surface: #fafbfc;
+  --surface-hover: #f5f6f7;
+  --border: #e1e5e9;
+  --border-light: #f0f2f5;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  
+  /* Status Colors */
+  --success: var(--boi-green);
+  --success-light: var(--boi-green-light);
+  --warning: var(--boi-orange);
+  --warning-light: var(--boi-orange-light);
+  --error: #d32f2f;
+  --error-light: #ffebee;
+  --info: var(--boi-teal);
+  --info-light: var(--boi-teal-light);
+  
+  /* Enhanced Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-boi: 0 2px 8px 0 rgba(0, 61, 130, 0.15);
+  --shadow-boi-hover: 0 8px 25px 0 rgba(0, 61, 130, 0.25);
+  --shadow-boi-active: 0 4px 15px 0 rgba(0, 61, 130, 0.35);
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #fafbfc 0%, #f0f2f5 100%);
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced Bank of Ireland Card Design */
+.boi-card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-boi);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.boi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--boi-blue), transparent);
+  transition: left 0.5s ease;
+}
+
+.boi-card:hover {
+  border-color: var(--boi-blue-light);
+  box-shadow: var(--shadow-boi-hover);
+  transform: translateY(-2px);
+}
+
+.boi-card:hover::before {
+  left: 100%;
+}
+
+.boi-card-elevated {
+  background: var(--background);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.boi-card-elevated:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: var(--boi-blue-light);
+}
+
+/* Enhanced Bank of Ireland Navigation */
+.boi-nav {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 2px solid var(--boi-blue);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+}
+
+.boi-nav::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--boi-blue) 0%, var(--boi-teal) 50%, var(--boi-blue) 100%);
+  animation: boi-nav-glow 3s ease-in-out infinite;
+}
+
+@keyframes boi-nav-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.boi-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space);
+  font-weight: 700;
+  color: var(--boi-blue);
+  transition: all 0.3s ease;
+}
+
+.boi-nav-logo:hover {
+  transform: scale(1.02);
+}
+
+.boi-nav-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--boi-blue) 0%, var(--boi-blue-light) 100%);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-boi);
+}
+
+.boi-nav-logo-icon:hover {
+  transform: rotate(5deg) scale(1.1);
+  box-shadow: var(--shadow-boi-hover);
+}
+
+.boi-nav-logo-icon::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--boi-blue-glow), var(--boi-teal-glow));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.boi-nav-logo-icon:hover::after {
+  opacity: 1;
+}
+
+.boi-nav-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.boi-nav-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 61, 130, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.boi-nav-button:hover {
+  background: var(--surface-hover);
+  color: var(--boi-blue);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.boi-nav-button:hover::before {
+  left: 100%;
+}
+
+.boi-nav-button.active {
+  background: linear-gradient(135deg, var(--boi-teal-light) 0%, rgba(0, 163, 161, 0.1) 100%);
+  color: var(--boi-blue);
+  font-weight: 600;
+  box-shadow: var(--shadow-boi);
+}
+
+.boi-nav-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.boi-nav-progress-step {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.boi-nav-progress-step.completed {
+  background: linear-gradient(135deg, var(--boi-green) 0%, #00d45a 100%);
+  color: white;
+  box-shadow: 0 0 20px var(--boi-green-glow);
+  animation: boi-pulse-success 2s ease-in-out infinite;
+}
+
+.boi-nav-progress-step.active {
+  background: linear-gradient(135deg, var(--boi-blue) 0%, var(--boi-blue-light) 100%);
+  color: white;
+  box-shadow: 0 0 20px var(--boi-blue-glow);
+  animation: boi-pulse-active 2s ease-in-out infinite;
+}
+
+.boi-nav-progress-step.pending {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.boi-nav-progress-step.pending:hover {
+  border-color: var(--boi-blue-light);
+  transform: scale(1.1);
+}
+
+@keyframes boi-pulse-success {
+  0%, 100% { box-shadow: 0 0 20px var(--boi-green-glow); }
+  50% { box-shadow: 0 0 30px var(--boi-green-glow), 0 0 40px var(--boi-green-glow); }
+}
+
+@keyframes boi-pulse-active {
+  0%, 100% { box-shadow: 0 0 20px var(--boi-blue-glow); }
+  50% { box-shadow: 0 0 30px var(--boi-blue-glow), 0 0 40px var(--boi-blue-glow); }
+}
+
+.boi-nav-progress-connector {
+  width: 32px;
+  height: 2px;
+  background: var(--border);
+  border-radius: 1px;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.boi-nav-progress-connector.completed {
+  background: linear-gradient(90deg, var(--boi-green) 0%, #00d45a 100%);
+  box-shadow: 0 0 10px var(--boi-green-glow);
+}
+
+.boi-nav-progress-connector.completed::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: boi-connector-shine 2s ease-in-out infinite;
+}
+
+@keyframes boi-connector-shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Enhanced Bank of Ireland Button Styles */
+.btn-boi-primary {
+  background: linear-gradient(135deg, var(--boi-blue) 0%, var(--boi-blue-light) 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-boi);
+}
+
+.btn-boi-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-boi-primary:hover {
+  background: linear-gradient(135deg, var(--boi-blue-hover) 0%, var(--boi-blue) 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-boi-hover);
+}
+
+.btn-boi-primary:hover::before {
+  left: 100%;
+}
+
+.btn-boi-primary:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: var(--shadow-boi-active);
+}
+
+.btn-boi-secondary {
+  background: var(--surface);
+  color: var(--boi-blue);
+  border: 2px solid var(--boi-blue);
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-boi-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--boi-blue) 0%, var(--boi-blue-light) 100%);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.btn-boi-secondary:hover {
+  color: white;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-boi-hover);
+  border-color: var(--boi-blue-light);
+}
+
+.btn-boi-secondary:hover::before {
+  left: 0;
+}
+
+.btn-boi-teal {
+  background: linear-gradient(135deg, var(--boi-teal) 0%, #00c4c2 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px 0 var(--boi-teal-glow);
+}
+
+.btn-boi-teal:hover {
+  background: linear-gradient(135deg, #008a88 0%, var(--boi-teal) 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px 0 var(--boi-teal-glow);
+}
+
+.btn-boi-green {
+  background: linear-gradient(135deg, var(--boi-green) 0%, #00d45a 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px 0 var(--boi-green-glow);
+}
+
+.btn-boi-green:hover {
+  background: linear-gradient(135deg, #009944 0%, var(--boi-green) 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px 0 var(--boi-green-glow);
+}
+
+/* Enhanced Form Elements */
+.boi-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.boi-form-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.boi-form-input {
+  padding: 12px var(--space);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--background);
+  position: relative;
+}
+
+.boi-form-input:focus {
+  outline: none;
+  border-color: var(--boi-blue);
+  box-shadow: 0 0 0 3px rgba(0, 61, 130, 0.1), 0 0 20px rgba(0, 61, 130, 0.1);
+  transform: translateY(-1px);
+}
+
+.boi-form-input:hover {
+  border-color: var(--boi-blue-light);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Enhanced Progress Bar */
+.boi-progress-container {
+  width: 100%;
+  height: 8px;
+  background: var(--surface);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.boi-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--boi-blue) 0%, var(--boi-teal) 100%);
+  border-radius: 4px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.boi-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: boi-progress-shine 2s ease-in-out infinite;
+}
+
+@keyframes boi-progress-shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* HTML Progress Element Styling */
+progress {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  height: 8px;
+  border: none;
+  border-radius: 4px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+  background: var(--surface);
+  border-radius: 4px;
+}
+
+progress::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--boi-blue) 0%, var(--boi-teal) 100%);
+  border-radius: 4px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+progress::-moz-progress-bar {
+  background: linear-gradient(90deg, var(--boi-blue) 0%, var(--boi-teal) 100%);
+  border-radius: 4px;
+  border: none;
+}
+
+/* Tailwind Progress Component Override */
+.progress {
+  background: var(--surface) !important;
+}
+
+.progress > div {
+  background: linear-gradient(90deg, var(--boi-blue) 0%, var(--boi-teal) 100%) !important;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Enhanced Assessment Question Styles */
+.boi-question-card {
+  background: var(--background);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.boi-question-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--boi-teal), transparent);
+  transition: left 0.5s ease;
+}
+
+.boi-question-card:hover {
+  border-color: var(--boi-blue-light);
+  box-shadow: var(--shadow-boi);
+  transform: translateY(-2px);
+}
+
+.boi-question-card:hover::before {
+  left: 100%;
+}
+
+.boi-likert-scale {
+  display: flex;
+  align-items: center;
+  gap: var(--space);
+  margin-top: var(--space-md);
+  padding: var(--space);
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(250, 251, 252, 0.8) 100%);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+}
+
+.boi-likert-option {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--background);
+  color: var(--text-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.boi-likert-option::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--boi-blue-glow), var(--boi-teal-glow));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.boi-likert-option:hover {
+  border-color: var(--boi-blue);
+  background: var(--boi-teal-light);
+  color: var(--boi-blue);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--boi-blue-glow);
+}
+
+.boi-likert-option:hover::before {
+  opacity: 1;
+}
+
+.boi-likert-option.selected {
+  border-color: var(--boi-blue);
+  background: linear-gradient(135deg, var(--boi-blue) 0%, var(--boi-blue-light) 100%);
+  color: white;
+  transform: scale(1.15);
+  box-shadow: 0 0 25px var(--boi-blue-glow);
+  animation: boi-selected-pulse 2s ease-in-out infinite;
+}
+
+@keyframes boi-selected-pulse {
+  0%, 100% { box-shadow: 0 0 25px var(--boi-blue-glow); }
+  50% { box-shadow: 0 0 35px var(--boi-blue-glow), 0 0 45px var(--boi-blue-glow); }
+}
+
+/* Enhanced Score Badges */
+.boi-score-badge {
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.boi-score-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.boi-score-badge:hover::before {
+  left: 100%;
+}
+
+.boi-score-badge.expert {
+  background: linear-gradient(135deg, var(--boi-green-light) 0%, rgba(0, 176, 80, 0.1) 100%);
+  color: var(--boi-green);
+  border: 1px solid var(--boi-green);
+  box-shadow: 0 0 15px var(--boi-green-glow);
+}
+
+.boi-score-badge.strong {
+  background: linear-gradient(135deg, var(--boi-teal-light) 0%, rgba(0, 163, 161, 0.1) 100%);
+  color: var(--boi-teal);
+  border: 1px solid var(--boi-teal);
+  box-shadow: 0 0 15px var(--boi-teal-glow);
+}
+
+.boi-score-badge.competent {
+  background: linear-gradient(135deg, var(--boi-orange-light) 0%, rgba(255, 105, 0, 0.1) 100%);
+  color: var(--boi-orange);
+  border: 1px solid var(--boi-orange);
+  box-shadow: 0 0 15px var(--boi-orange-glow);
+}
+
+/* Enhanced Tab Navigation */
+.boi-tab-nav {
+  display: flex;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: var(--space-md);
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(250, 251, 252, 0.8) 100%);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  overflow: hidden;
+}
+
+.boi-tab-button {
+  padding: var(--space) var(--space-md);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.boi-tab-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 61, 130, 0.05), transparent);
+  transition: left 0.5s ease;
+}
+
+.boi-tab-button:hover {
+  color: var(--boi-blue);
+  background: rgba(0, 61, 130, 0.05);
+  transform: translateY(-1px);
+}
+
+.boi-tab-button:hover::before {
+  left: 100%;
+}
+
+.boi-tab-button.active {
+  color: var(--boi-blue);
+  border-bottom-color: var(--boi-blue);
+  background: linear-gradient(135deg, var(--background) 0%, rgba(255, 255, 255, 0.9) 100%);
+  box-shadow: 0 -2px 10px rgba(0, 61, 130, 0.1);
+}
+
+/* Enhanced Animations */
+@keyframes boi-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.boi-animate-fade-in {
+  animation: boi-fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes boi-slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.boi-animate-slide-in {
+  animation: boi-slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced Recommendation Cards */
+.boi-recommendation-card {
+  background: var(--background);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.boi-recommendation-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  transition: left 0.5s ease;
+}
+
+.boi-recommendation-card:hover {
+  border-color: var(--boi-blue-light);
+  box-shadow: var(--shadow-boi-hover);
+  transform: translateY(-3px) scale(1.01);
+}
+
+.boi-recommendation-card:hover::before {
+  left: 100%;
+}
+
+.boi-recommendation-card.high-priority {
+  border-left: 4px solid var(--error);
+  background: linear-gradient(135deg, var(--error-light) 0%, var(--background) 15%);
+}
+
+.boi-recommendation-card.high-priority::before {
+  background: linear-gradient(90deg, transparent, var(--error), transparent);
+}
+
+.boi-recommendation-card.medium-priority {
+  border-left: 4px solid var(--boi-orange);
+  background: linear-gradient(135deg, var(--boi-orange-light) 0%, var(--background) 15%);
+}
+
+.boi-recommendation-card.medium-priority::before {
+  background: linear-gradient(90deg, transparent, var(--boi-orange), transparent);
+}
+
+.boi-recommendation-card.low-priority {
+  border-left: 4px solid var(--boi-green);
+  background: linear-gradient(135deg, var(--boi-green-light) 0%, var(--background) 15%);
+}
+
+.boi-recommendation-card.low-priority::before {
+  background: linear-gradient(90deg, transparent, var(--boi-green), transparent);
+}
+
+/* Typography Enhancements */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 var(--space) 0;
+  background: linear-gradient(135deg, var(--boi-blue) 0%, var(--boi-blue-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .boi-card {
+    border-radius: var(--radius-sm);
+    margin: var(--space-sm);
+  }
+  
+  .boi-nav-button {
+    padding: var(--space-sm);
+    font-size: 13px;
+  }
+  
+  .btn-boi-primary, .btn-boi-secondary {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+  
+  .boi-question-card {
+    padding: var(--space);
+  }
+  
+  .boi-likert-scale {
+    gap: var(--space-sm);
+  }
+  
+  .boi-likert-option {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+}
+
+/* Focus States */
+*:focus {
+  outline: none;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 61, 130, 0.2), 0 0 20px rgba(0, 61, 130, 0.1);
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white !important;
+  }
+  
+  .boi-card,
+  .boi-card-elevated {
+    border: 1px solid #e1e5e9 !important;
+    box-shadow: none !important;
+  }
+  
+  .boi-nav {
+    border-bottom: 2px solid var(--boi-blue) !important;
+  }
+}
+
